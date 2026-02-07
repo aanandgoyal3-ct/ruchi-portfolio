@@ -16,7 +16,6 @@
   --dark: #0f172a;
   --bg: #f8fafc;
   --white: #ffffff;
-  --contact-bg: #1e293b; /* Dark Slate for Contact Box */
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
@@ -115,13 +114,12 @@ nav a:hover { color: var(--primary); }
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 80px 20px; /* Top/Bottom padding for the container */
+  padding: 80px 20px;
 }
 
-/* SECTION SPACING FIX */
 section {
-  scroll-margin-top: 100px; /* Ensures title isn't hidden behind nav when clicking links */
-  margin-bottom: 100px;     /* Adds space between sections (Fixes Collision) */
+  scroll-margin-top: 100px;
+  margin-bottom: 100px;
 }
 
 h2 {
@@ -192,16 +190,17 @@ h2::after {
 .exp-img { flex: 1; min-height: 250px; }
 .exp-img img { width: 100%; height: 100%; object-fit: cover; }
 
-/* ============ 7. CONTACT (Restored Dark Box) ============ */
+/* ============ 7. CONTACT (Themed to Match Page) ============ */
 .contact-box {
-  background: var(--contact-bg); /* Dark Background */
-  color: white;                  /* White Text */
+  background: white;        /* White Background like other cards */
+  color: var(--dark);       /* Dark text */
   max-width: 700px;
   margin: 0 auto;
   padding: 50px;
   border-radius: 20px;
   text-align: center;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08); /* Matches other shadows */
+  border: 1px solid #f1f5f9; /* Matches other borders */
 }
 
 .contact-row {
@@ -211,11 +210,10 @@ h2::after {
   gap: 15px;
   margin-bottom: 20px;
   font-size: 18px;
-  color: white; /* Ensure text is white */
+  color: var(--dark); /* Dark text */
 }
 
-/* Gold Icon Color for Contrast */
-.contact-row i { color: #fbbf24; font-size: 22px; }
+.contact-row i { color: var(--primary); font-size: 22px; } /* Blue Icons */
 
 /* ============ 8. FOOTER ============ */
 footer {
@@ -223,7 +221,6 @@ footer {
   padding: 60px 20px;
   background: var(--dark);
   color: #94a3b8;
-  margin-top: 0; /* Remove top margin as container has padding */
 }
 
 .signature {
