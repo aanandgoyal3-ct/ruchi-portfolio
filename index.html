@@ -5,381 +5,617 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Ruchi Goyal | Educator Portfolio</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
-/* ============ 1. PERFORMANCE & RESET ============ */
+/* =========================================
+   1. CORE VARIABLES & RESET
+   ========================================= */
 :root {
-  --primary: #2563eb;
-  --dark: #0f172a;
-  --bg: #f8fafc;
-  --card-bg: #ffffff;
-  --transition-speed: 0.3s;
+  --primary: #2563eb;       /* Royal Blue */
+  --primary-dark: #1e40af;  /* Darker Blue */
+  --accent: #f59e0b;        /* Gold/Amber for highlights */
+  --dark: #0f172a;          /* Main Text */
+  --light: #f8fafc;         /* Background */
+  --white: #ffffff;
+  --shadow: 0 10px 30px -10px rgba(0,0,0,0.1);
+  --glass: rgba(255, 255, 255, 0.95);
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
 
 body {
-  background: var(--bg);
+  background: var(--light);
   color: var(--dark);
+  line-height: 1.7;
   overflow-x: hidden;
-  /* Font smoothing for better text rendering */
-  -webkit-font-smoothing: antialiased;
+  /* Hardware acceleration for smooth scrolling */
+  transform: translateZ(0); 
 }
 
-/* ============ 2. NAVBAR (Fixed Spacing) ============ */
+/* =========================================
+   2. NAVIGATION BAR
+   ========================================= */
 nav {
   position: fixed;
   width: 100%;
   top: 0;
-  height: 70px;
-  background: white;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  height: 80px;
+  background: var(--glass);
+  border-bottom: 1px solid rgba(0,0,0,0.05);
   z-index: 1000;
   display: flex;
+  align-items: center;
   justify-content: center;
+  transition: 0.3s;
 }
 
 .nav-container {
   width: 100%;
-  max-width: 1400px; /* Wider for your screen */
-  padding: 0 30px;
+  max-width: 1600px;
+  padding: 0 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.logo-section {
+/* Logo */
+.brand {
   display: flex;
   align-items: center;
-  gap: 12px; /* Perfect gap between badge and name */
+  gap: 15px;
   cursor: pointer;
 }
 
-.logo-badge {
+.brand-badge {
+  width: 45px;
+  height: 45px;
   background: var(--primary);
   color: white;
-  width: 40px;
-  height: 40px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 700;
+  font-size: 18px;
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
 }
 
-.nav-links {
+.brand-name {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--dark);
+  letter-spacing: -0.5px;
+}
+
+/* Nav Actions */
+.nav-actions {
   display: flex;
   align-items: center;
-  gap: 25px;
+  gap: 30px;
 }
 
-nav ul { list-style: none; display: flex; gap: 25px; }
-nav a { text-decoration: none; color: var(--dark); font-weight: 500; transition: color 0.2s; }
-nav a:hover { color: var(--primary); }
-
-/* SEARCH BAR (Optimized) */
-.search-wrapper {
+/* Search Bar */
+.search-box {
   position: relative;
-}
-.search-wrapper input {
-  padding: 8px 15px 8px 35px;
-  border-radius: 20px;
-  border: 1px solid #e2e8f0;
   background: #f1f5f9;
-  outline: none;
-  font-size: 14px;
-  width: 200px;
-  transition: width 0.3s;
+  border-radius: 50px;
+  padding: 8px 20px;
+  display: flex;
+  align-items: center;
+  border: 2px solid transparent;
+  transition: 0.3s;
+  width: 280px;
 }
-.search-wrapper input:focus { width: 250px; border-color: var(--primary); background: white; }
-.search-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #94a3b8; font-size: 14px; }
 
-/* ============ 3. HERO SECTION ============ */
-.hero {
-  height: 85vh;
-  margin-top: 70px;
+.search-box:focus-within {
+  background: white;
+  border-color: var(--primary);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.1);
+}
+
+.search-box i { color: #94a3b8; margin-right: 10px; }
+.search-box input {
+  border: none;
+  background: transparent;
+  outline: none;
+  width: 100%;
+  font-size: 14px;
+  color: var(--dark);
+}
+
+/* Links */
+.links { display: flex; gap: 30px; list-style: none; }
+.links a {
+  text-decoration: none;
+  color: var(--dark);
+  font-weight: 500;
+  font-size: 15px;
   position: relative;
+}
+
+.links a::after {
+  content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px;
+  background: var(--primary); transition: 0.3s;
+}
+.links a:hover { color: var(--primary); }
+.links a:hover::after { width: 100%; }
+
+/* =========================================
+   3. HERO SECTION
+   ========================================= */
+.hero {
+  position: relative;
+  height: 85vh;
+  margin-top: 80px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
   color: white;
-  /* Static background is faster than fixed attachment */
-  background: linear-gradient(rgba(15,23,42,0.8), rgba(15,23,42,0.8)), 
-              url("https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1900&q=80");
+  /* Use a high-quality static image for best performance */
+  background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.75)), 
+              url("https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&auto=format&fit=crop&w=1900&q=80");
   background-size: cover;
   background-position: center;
+  /* Fixes visual jitter on scroll */
+  background-attachment: scroll; 
 }
 
-.hero img {
-  width: 160px; height: 160px; border-radius: 50%; border: 4px solid white;
-  margin-bottom: 20px; object-fit: cover;
+.hero-img {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  border: 5px solid rgba(255,255,255,0.2);
+  padding: 5px;
+  background-clip: content-box;
+  background-color: white;
+  object-fit: cover;
+  margin-bottom: 25px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
 }
-.hero h1 { font-size: 48px; margin-bottom: 10px; }
-.hero p { font-size: 20px; opacity: 0.9; }
 
-/* ============ 4. GENERAL LAYOUT ============ */
-.container {
+.hero h1 {
+  font-size: 56px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  letter-spacing: -1px;
+}
+
+.hero p {
+  font-size: 22px;
+  font-weight: 300;
+  opacity: 0.9;
+  max-width: 700px;
+}
+
+/* =========================================
+   4. PAGE LAYOUT
+   ========================================= */
+.main-wrapper {
   max-width: 1200px;
   margin: 0 auto;
   padding: 80px 20px;
 }
 
-h2 {
+.section-title {
   text-align: center;
-  font-size: 32px;
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 60px;
+  color: var(--dark);
+}
+
+.section-title span {
+  position: relative;
+  z-index: 1;
+}
+
+.section-title span::after {
+  content: '';
+  position: absolute;
+  bottom: 5px;
+  left: -5px;
+  width: 110%;
+  height: 12px;
+  background: rgba(37, 99, 235, 0.15); /* Light blue highlight */
+  z-index: -1;
+  border-radius: 4px;
+}
+
+/* =========================================
+   5. SKILLS GRID (Instant Hover)
+   ========================================= */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+  margin-bottom: 100px;
+}
+
+.skill-card {
+  background: var(--white);
+  padding: 35px;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  border: 1px solid #f1f5f9;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+  border-color: var(--primary);
+}
+
+.skill-icon {
+  width: 60px;
+  height: 60px;
+  background: #eff6ff;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  color: var(--primary);
+  margin-bottom: 20px;
+}
+
+.skill-card h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+/* DETAILS VISIBLE ON HOVER */
+.skill-desc {
+  font-size: 15px;
+  color: var(--dark);
+  opacity: 0.7;
+  line-height: 1.6;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease, opacity 0.3s ease;
+}
+
+.skill-card:hover .skill-desc {
+  max-height: 150px;
+  opacity: 1;
+  margin-top: 10px;
+}
+
+/* Default state (hidden message) */
+.hover-hint {
+  font-size: 12px;
+  color: #94a3b8;
+  margin-top: 10px;
+  display: block;
+}
+.skill-card:hover .hover-hint { display: none; }
+
+/* =========================================
+   6. EXPERIENCE (Always Visible)
+   ========================================= */
+.exp-card {
+  display: flex;
+  background: var(--white);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
   margin-bottom: 50px;
+  transition: transform 0.3s;
+  border: 1px solid #f1f5f9;
+}
+
+.exp-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--primary);
+}
+
+.exp-content {
+  flex: 1.5;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.exp-role {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 5px;
+}
+
+.exp-place {
+  font-size: 16px;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+}
+
+.exp-text {
+  font-size: 16px;
+  color: #334155;
+  line-height: 1.8;
+}
+
+.exp-img {
+  flex: 1;
+  background-color: #f1f5f9;
   position: relative;
 }
-h2::after {
-  content: ''; display: block; width: 60px; height: 4px; background: var(--primary); margin: 10px auto 0;
-}
 
-/* ============ 5. SKILLS (Hover Effect) ============ */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
-}
-
-.card {
-  background: white;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  cursor: default;
-  border-bottom: 3px solid transparent;
-  height: 100%; /* Uniform height */
-}
-
-/* HOVER INTERACTION */
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-  border-bottom-color: var(--primary);
-}
-
-.card-header { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
-.card i { font-size: 24px; color: var(--primary); }
-.card h3 { font-size: 18px; font-weight: 600; }
-
-/* Detail visible on Hover */
-.card-desc {
-  font-size: 14px;
-  color: var(--text-grey);
-  line-height: 1.6;
-  opacity: 0.6;
-  max-height: 0; /* Hidden by default */
-  overflow: hidden;
-  transition: all 0.4s ease;
-}
-
-/* When hovering card, show description */
-.card:hover .card-desc {
-  opacity: 1;
-  max-height: 100px; /* Enough space to show text */
-}
-
-/* ============ 6. EXPERIENCE (Always Visible) ============ */
-.exp-item {
-  background: white;
-  border-radius: 15px;
-  margin-bottom: 40px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-  display: flex;
-  overflow: hidden;
-  /* Faster rendering */
-  transform: translateZ(0); 
-}
-
-.exp-content { padding: 40px; flex: 1; display: flex; flex-direction: column; justify-content: center; }
-.exp-header h3 { color: var(--primary); font-size: 22px; margin-bottom: 5px; }
-.exp-header span { font-size: 14px; color: #64748b; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
-.exp-text { margin-top: 20px; color: #334155; line-height: 1.7; font-size: 15px; }
-
-/* Right side Image */
-.exp-img {
-  width: 300px;
+.exp-img img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+  position: absolute;
 }
 
-/* ============ 7. NEW CONTACT SECTION (Premium) ============ */
-.contact-section {
-  background: #1e293b; /* Dark slate */
-  color: white;
-  border-radius: 20px;
+/* =========================================
+   7. CONTACT (Polished & Professional)
+   ========================================= */
+.contact-wrapper {
+  background: white;
+  border-radius: 24px;
   padding: 60px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.1);
   text-align: center;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
+  border: 1px solid #e2e8f0;
+  position: relative;
+  overflow: hidden;
 }
 
-.contact-section h2 { color: white; margin-bottom: 40px; }
-.contact-section h2::after { background: #fbbf24; /* Gold accent */ }
+/* decorative accent */
+.contact-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 6px;
+  background: linear-gradient(to right, var(--primary), var(--accent));
+}
 
 .contact-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 30px;
-  margin-top: 40px;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-top: 50px;
 }
 
 .c-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
+  min-width: 200px;
 }
 
-.c-icon {
-  width: 50px; height: 50px;
-  background: rgba(255,255,255,0.1);
+.c-icon-box {
+  width: 64px;
+  height: 64px;
+  background: #f8fafc;
   border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 20px; color: #fbbf24;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+  font-size: 24px;
+  margin-bottom: 15px;
+  border: 1px solid #e2e8f0;
 }
 
-.c-text { font-size: 16px; font-weight: 300; letter-spacing: 0.5px; }
-.c-label { font-size: 12px; opacity: 0.5; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
+.c-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+}
 
-/* ============ 8. FOOTER ============ */
-footer { text-align: center; padding: 50px; color: #64748b; background: white; margin-top: 80px; }
-.sig { font-family: 'Great Vibes', cursive; font-size: 35px; color: var(--primary); margin-bottom: 10px; }
+.c-value {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--dark);
+}
 
-/* ============ MOBILE ============ */
-@media(max-width: 900px){
-  .exp-item { flex-direction: column; }
-  .exp-img { width: 100%; height: 250px; }
-  .nav-links ul { display: none; } /* Simplified mobile nav */
+/* =========================================
+   8. FOOTER & SIGNATURE
+   ========================================= */
+footer {
+  background: var(--dark);
+  color: #94a3b8;
+  text-align: center;
+  padding: 80px 20px;
+  margin-top: 100px;
+}
+
+.signature-container {
+  margin-bottom: 20px;
+}
+
+.signature {
+  font-family: 'Great Vibes', cursive;
+  font-size: 60px; /* Increased Size */
+  color: var(--white);
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.5); /* Highlight Effect */
+  display: inline-block;
+  transform: rotate(-3deg);
+}
+
+/* =========================================
+   9. MOBILE & UTILITIES
+   ========================================= */
+.hidden-search { display: none !important; }
+
+@media(max-width: 1024px){
+  .exp-card { flex-direction: column; }
+  .exp-img { height: 250px; width: 100%; position: relative; }
+  .exp-img img { position: static; height: 250px; }
+  .nav-container { padding: 0 20px; }
+  .links { display: none; } /* Hide links on mobile for cleaner look */
 }
 </style>
 </head>
+
 <body>
 
 <nav>
   <div class="nav-container">
-    <div class="logo-section" onclick="window.scrollTo(0,0)">
-      <div class="logo-badge">RG</div>
-      <div style="font-weight:700; font-size:18px;">Ruchi Goyal</div>
+    
+    <div class="brand" onclick="window.scrollTo(0,0)">
+      <div class="brand-badge">RG</div>
+      <div class="brand-name">Ruchi Goyal</div>
     </div>
 
-    <div class="nav-links">
-      <div class="search-wrapper">
-        <i class="fa-solid fa-magnifying-glass search-icon"></i>
-        <input type="text" id="searchInput" placeholder="Search portfolio..." onkeyup="liveSearch()">
+    <div class="nav-actions">
+      <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="searchInput" placeholder="Search..." onkeyup="filterPortfolio()">
       </div>
-      
-      <ul>
+
+      <ul class="links">
         <li><a href="#skills">Skills</a></li>
         <li><a href="#experience">Experience</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </div>
+
   </div>
 </nav>
 
 <section class="hero">
-  <img src="https://ui-avatars.com/api/?name=Ruchi+Goyal&background=2563eb&color=fff&size=200" alt="Ruchi">
+  <img src="https://ui-avatars.com/api/?name=Ruchi+Goyal&background=2563eb&color=fff&size=200" alt="Ruchi" class="hero-img">
   <h1>Ruchi Goyal</h1>
   <p>Passionate Educator | Curriculum Designer | Student Mentor</p>
 </section>
 
-<div class="container">
+<div class="main-wrapper">
 
   <section id="skills">
-    <h2>Core Competencies</h2>
-    <div class="grid">
+    <div class="section-title"><span>Core Competencies</span></div>
+    
+    <div class="skills-grid" id="skillsContainer">
       
-      <div class="card searchable">
-        <div class="card-header"><i class="fa-solid fa-book-open"></i><h3>Lesson Planning</h3></div>
-        <div class="card-desc">Designing structured daily and weekly plans that cater to diverse learning styles and meet academic standards effectively.</div>
+      <div class="skill-card searchable">
+        <div class="skill-icon"><i class="fa-solid fa-book-open"></i></div>
+        <h3>Lesson Planning</h3>
+        <span class="hover-hint">Hover for details...</span>
+        <div class="skill-desc">Designing structured daily and weekly plans that align with curriculum standards while keeping students engaged through interactive activities.</div>
       </div>
-      <div class="card searchable">
-        <div class="card-header"><i class="fa-solid fa-users-line"></i><h3>Classroom Management</h3></div>
-        <div class="card-desc">Fostering a positive, disciplined, and interactive classroom atmosphere that encourages student participation.</div>
+
+      <div class="skill-card searchable">
+        <div class="skill-icon"><i class="fa-solid fa-users-line"></i></div>
+        <h3>Classroom Mgmt</h3>
+        <span class="hover-hint">Hover for details...</span>
+        <div class="skill-desc">Fostering a positive, disciplined, and interactive classroom atmosphere that encourages student participation and safety.</div>
       </div>
-      <div class="card searchable">
-        <div class="card-header"><i class="fa-solid fa-shapes"></i><h3>Curriculum Design</h3></div>
-        <div class="card-desc">Developing robust curriculum frameworks that integrate practical application with theoretical knowledge.</div>
+
+      <div class="skill-card searchable">
+        <div class="skill-icon"><i class="fa-solid fa-shapes"></i></div>
+        <h3>Curriculum Design</h3>
+        <span class="hover-hint">Hover for details...</span>
+        <div class="skill-desc">Developing robust curriculum frameworks that integrate practical application with theoretical knowledge effectively.</div>
       </div>
-      <div class="card searchable">
-        <div class="card-header"><i class="fa-solid fa-chart-line"></i><h3>Student Assessment</h3></div>
-        <div class="card-desc">Utilizing data-driven assessment tools to track student progress and identify areas for personalized improvement.</div>
+
+      <div class="skill-card searchable">
+        <div class="skill-icon"><i class="fa-solid fa-chart-line"></i></div>
+        <h3>Student Assessment</h3>
+        <span class="hover-hint">Hover for details...</span>
+        <div class="skill-desc">Utilizing data-driven assessment tools to track student progress and identify areas for personalized improvement.</div>
       </div>
-      <div class="card searchable">
-        <div class="card-header"><i class="fa-solid fa-laptop-code"></i><h3>Tech Integration</h3></div>
-        <div class="card-desc">Proficient in using smart boards, educational software, and digital tools to enhance the learning experience.</div>
+
+      <div class="skill-card searchable">
+        <div class="skill-icon"><i class="fa-solid fa-laptop-code"></i></div>
+        <h3>Tech Integration</h3>
+        <span class="hover-hint">Hover for details...</span>
+        <div class="skill-desc">Proficient in using smart boards, educational software, and digital tools to enhance the learning experience.</div>
       </div>
-      <div class="card searchable">
-        <div class="card-header"><i class="fa-solid fa-comments"></i><h3>Parent Communication</h3></div>
-        <div class="card-desc">Building strong relationships with parents and faculty to ensure a holistic support system for students.</div>
+
+      <div class="skill-card searchable">
+        <div class="skill-icon"><i class="fa-solid fa-comments"></i></div>
+        <h3>Parent Relations</h3>
+        <span class="hover-hint">Hover for details...</span>
+        <div class="skill-desc">Building strong relationships with parents and faculty to ensure a holistic support system for students.</div>
       </div>
 
     </div>
   </section>
 
   <section id="experience">
-    <h2>Experience</h2>
-    
-    <div class="exp-item searchable">
+    <div class="section-title"><span>Professional Experience</span></div>
+
+    <div class="exp-card searchable">
       <div class="exp-content">
-        <div class="exp-header">
-          <h3>Teacher & Mentor</h3>
-          <span>Subodh Public School</span>
-        </div>
-        <p class="exp-text">Lead teacher for middle school science. Successfully implemented a new peer-learning program that improved class average scores by 15%. Organized the annual Science Fair and mentored students for state-level competitions.</p>
+        <div class="exp-role">Teacher & Mentor</div>
+        <div class="exp-place">Subodh Public School</div>
+        <p class="exp-text">
+          Lead teacher for middle school science. Successfully implemented a new peer-learning program that improved class average scores by 15%. Organized the annual Science Fair and mentored students for state-level competitions.
+        </p>
       </div>
-      <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="exp-img" alt="Teaching">
+      <div class="exp-img">
+        <img src="https://images.unsplash.com/photo-1577896334614-201b31d50863?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Teaching">
+      </div>
     </div>
 
-    <div class="exp-item searchable">
+    <div class="exp-card searchable">
       <div class="exp-content">
-        <div class="exp-header">
-          <h3>Academic Coordinator</h3>
-          <span>Education Board, Jaipur</span>
-        </div>
-        <p class="exp-text">Coordinated inter-school competitions and managed the annual academic calendar. Worked closely with the principal on faculty development workshops and streamlined the examination process.</p>
+        <div class="exp-role">Academic Coordinator</div>
+        <div class="exp-place">Education Board, Jaipur</div>
+        <p class="exp-text">
+          Coordinated inter-school competitions and managed the annual academic calendar. Worked closely with the principal on faculty development workshops and streamlined the examination process.
+        </p>
       </div>
-      <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="exp-img" alt="Coordination">
+      <div class="exp-img">
+        <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Meeting">
+      </div>
     </div>
 
   </section>
 
   <section id="contact">
-    <div class="contact-section">
-      <h2>Get in Touch</h2>
-      <p style="opacity:0.8;">Feel free to reach out for collaborations or opportunities.</p>
-      
+    <div class="section-title"><span>Get In Touch</span></div>
+    
+    <div class="contact-wrapper">
       <div class="contact-grid">
-        <div class="c-item">
-          <div class="c-icon"><i class="fa-solid fa-phone"></i></div>
-          <div>
-            <div class="c-label">Phone</div>
-            <div class="c-text">9829821567</div>
-          </div>
-        </div>
         
         <div class="c-item">
-          <div class="c-icon"><i class="fa-solid fa-envelope"></i></div>
-          <div>
-            <div class="c-label">Email</div>
-            <div class="c-text">aanandgoyal3@gmail.com</div>
-          </div>
+          <div class="c-icon-box"><i class="fa-solid fa-phone"></i></div>
+          <div class="c-label">Phone</div>
+          <div class="c-value">9829821567</div>
         </div>
-        
+
         <div class="c-item">
-          <div class="c-icon"><i class="fa-solid fa-location-dot"></i></div>
-          <div>
-            <div class="c-label">Location</div>
-            <div class="c-text">Jaipur, India</div>
-          </div>
+          <div class="c-icon-box"><i class="fa-solid fa-envelope"></i></div>
+          <div class="c-label">Email</div>
+          <div class="c-value">aanandgoyal3@gmail.com</div>
         </div>
+
+        <div class="c-item">
+          <div class="c-icon-box"><i class="fa-solid fa-location-dot"></i></div>
+          <div class="c-label">Location</div>
+          <div class="c-value">Jaipur, India</div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -387,28 +623,31 @@ footer { text-align: center; padding: 50px; color: #64748b; background: white; m
 </div>
 
 <footer>
-  <div class="sig">Ruchi Goyal</div>
+  <div class="signature-container">
+    <span class="signature">Ruchi Goyal</span>
+  </div>
   <p>© 2026 Ruchi Goyal | Professional Portfolio</p>
 </footer>
 
 <script>
-  function liveSearch() {
-    let input = document.getElementById('searchInput').value.toLowerCase();
-    let cards = document.querySelectorAll('.searchable');
+  function filterPortfolio() {
+    // 1. Get input
+    const input = document.getElementById('searchInput').value.toLowerCase();
+    const items = document.querySelectorAll('.searchable');
 
-    cards.forEach(card => {
-      // Get all text inside the card/experience item
-      let text = card.innerText.toLowerCase();
+    items.forEach(item => {
+      // 2. Get text content of each item
+      const text = item.innerText.toLowerCase();
       
-      if(text.includes(input)) {
-        // If it matches, make sure it's visible
-        card.style.display = "flex"; // "flex" preserves layout for exp-item
-        if(card.classList.contains('card')) card.style.display = "block"; // "block" for grid cards
+      // 3. Logic: Match?
+      if (text.includes(input)) {
+        item.classList.remove('hidden-search');
       } else {
-        // If it doesn't match, hide it completely
-        card.style.display = "none";
+        item.classList.add('hidden-search');
       }
     });
+
+    // 4. Handle Empty State (Optional: Add a "No results" message logic here if desired)
   }
 </script>
 
