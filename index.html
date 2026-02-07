@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
 <title>Ruchi Goyal | Professional Portfolio</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -12,54 +13,51 @@
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family:'Poppins', sans-serif;
+  font-family:'Poppins',sans-serif;
   scroll-behavior:smooth;
 }
 
-/* ===== Colors ===== */
+/* ================= COLORS ================= */
 :root{
   --primary:#2563eb;
   --secondary:#1e40af;
-  --light:#f8fafc;
-  --dark:#1f2937;
-  --card:#ffffff;
+  --light:#f1f5f9;
+  --dark:#0f172a;
+  --white:#ffffff;
 }
 
-/* ===== Layout ===== */
+/* ================= BODY ================= */
 body{
   background:var(--light);
   color:var(--dark);
   line-height:1.6;
 }
 
-section{
-  padding:80px 10%;
-}
-
-h2{
-  font-size:32px;
-  margin-bottom:40px;
-  text-align:center;
-}
-
-/* ===== Navbar ===== */
+/* ================= NAVBAR ================= */
 nav{
   position:fixed;
   width:100%;
-  background:white;
+  top:0;
+  padding:15px 10%;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:15px 10%;
-  box-shadow:0 2px 10px rgba(0,0,0,0.05);
+
+  background:rgba(255,255,255,0.75);
+  backdrop-filter:blur(8px);
+  box-shadow:0 2px 12px rgba(0,0,0,0.05);
   z-index:1000;
+}
+
+nav strong{
+  font-size:18px;
 }
 
 nav a{
   text-decoration:none;
-  margin-left:20px;
-  color:var(--dark);
+  margin-left:25px;
   font-weight:500;
+  color:var(--dark);
   transition:.3s;
 }
 
@@ -67,64 +65,110 @@ nav a:hover{
   color:var(--primary);
 }
 
-/* ===== Hero ===== */
+/* ================= SECTIONS ================= */
+section{
+  padding:90px 10%;
+}
+
+/* ================= HERO ================= */
 .hero{
   height:100vh;
   display:flex;
   align-items:center;
   justify-content:center;
   text-align:center;
-  background:linear-gradient(135deg,var(--primary),var(--secondary));
-  color:white;
   flex-direction:column;
+  color:white;
+  position:relative;
+  overflow:hidden;
+}
+
+/* background image */
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:url("subodh.jpg") center/cover no-repeat;
+  z-index:-2;
+}
+
+/* dark overlay */
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.65);
+  z-index:-1;
+}
+
+.hero img{
+  width:140px;
+  border-radius:50%;
+  margin-bottom:20px;
+  border:4px solid white;
 }
 
 .hero h1{
   font-size:48px;
-  margin-bottom:15px;
+  margin-bottom:10px;
 }
 
 .hero p{
-  max-width:600px;
+  max-width:650px;
   opacity:.9;
 }
 
+/* ================= BUTTON ================= */
 .btn{
   margin-top:25px;
-  padding:12px 25px;
-  border:none;
+  padding:12px 26px;
   background:white;
   color:var(--primary);
   font-weight:600;
   border-radius:30px;
-  cursor:pointer;
-  transition:.3s;
   text-decoration:none;
+  transition:.3s;
 }
 
 .btn:hover{
   transform:translateY(-3px);
-  box-shadow:0 8px 20px rgba(0,0,0,.2);
+  box-shadow:0 10px 25px rgba(0,0,0,0.3);
 }
 
-/* ===== Cards ===== */
+/* ================= HEADINGS ================= */
+h2{
+  text-align:center;
+  font-size:32px;
+  margin-bottom:40px;
+}
+
+/* ================= ABOUT ================= */
+.about{
+  max-width:800px;
+  margin:auto;
+  text-align:center;
+  font-size:17px;
+}
+
+/* ================= GRID ================= */
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
   gap:25px;
 }
 
+/* ================= CARDS ================= */
 .card{
-  background:var(--card);
+  background:white;
   padding:25px;
-  border-radius:16px;
-  box-shadow:0 4px 20px rgba(0,0,0,0.06);
-  transition:.4s;
+  border-radius:18px;
+  box-shadow:0 6px 20px rgba(0,0,0,0.06);
+  transition:.35s;
 }
 
 .card:hover{
   transform:translateY(-8px);
-  box-shadow:0 10px 25px rgba(0,0,0,0.15);
+  box-shadow:0 14px 30px rgba(0,0,0,0.15);
 }
 
 .card h3{
@@ -132,26 +176,25 @@ nav a:hover{
   margin-bottom:10px;
 }
 
-/* ===== About ===== */
-.about{
+/* ================= CONTACT ================= */
+.contact{
   text-align:center;
-  max-width:800px;
-  margin:auto;
+  font-size:18px;
 }
 
-/* ===== Footer ===== */
+/* ================= FOOTER ================= */
 footer{
   background:var(--dark);
   color:white;
   text-align:center;
-  padding:30px;
+  padding:25px;
 }
 
-/* ===== Animation ===== */
+/* ================= SCROLL ANIMATION ================= */
 .fade{
   opacity:0;
   transform:translateY(40px);
-  transition:1s;
+  transition:1s ease;
 }
 
 .fade.show{
@@ -159,7 +202,7 @@ footer{
   transform:translateY(0);
 }
 
-/* ===== Responsive ===== */
+/* ================= MOBILE ================= */
 @media(max-width:768px){
   .hero h1{
     font-size:34px;
@@ -182,65 +225,43 @@ footer{
 
 <!-- HERO -->
 <section class="hero">
+  <!-- optional profile image -->
+  <img src="profile.jpg" alt="Profile Photo">
+
   <h1>Ruchi Goyal</h1>
-  <p>Dedicated educator focused on creating engaging learning experiences and fostering academic excellence through innovative teaching practices.</p>
-  <a href="#" class="btn">Download Resume</a>
+
+  <p>
+    Dedicated educator focused on creating engaging learning experiences
+    and fostering academic excellence through innovative teaching practices.
+  </p>
+
+  <a href="resume.pdf" class="btn">Download Resume</a>
 </section>
 
 <!-- ABOUT -->
 <section id="about" class="fade">
   <h2>About Me</h2>
   <div class="about">
-    Passionate and results-driven educator with strong expertise in curriculum design,
-    classroom management, and technology integration. Committed to building positive
-    learning environments that help students grow academically and personally.
+    Passionate educator with expertise in curriculum design, classroom management,
+    assessment strategies, and technology integration. I strive to create positive,
+    inclusive, and effective learning environments that help students achieve their full potential.
   </div>
 </section>
 
-<!-- COMPETENCIES -->
+<!-- SKILLS -->
 <section id="skills" class="fade">
   <h2>Core Competencies</h2>
+
   <div class="grid">
 
-    <div class="card">
-      <h3>Lesson Planning</h3>
-      Designing engaging and structured lesson plans tailored to diverse learners.
-    </div>
-
-    <div class="card">
-      <h3>Curriculum Development</h3>
-      Creating effective curricula aligned with educational standards and outcomes.
-    </div>
-
-    <div class="card">
-      <h3>Classroom Management</h3>
-      Maintaining positive, disciplined, and inclusive classroom environments.
-    </div>
-
-    <div class="card">
-      <h3>Student Assessment</h3>
-      Conducting formative and summative assessments to track academic progress.
-    </div>
-
-    <div class="card">
-      <h3>Communication</h3>
-      Strong collaboration with students, parents, and colleagues.
-    </div>
-
-    <div class="card">
-      <h3>Technology Integration</h3>
-      Using digital tools and e-learning platforms for interactive learning.
-    </div>
-
-    <div class="card">
-      <h3>Time Management</h3>
-      Handling multiple responsibilities efficiently and effectively.
-    </div>
-
-    <div class="card">
-      <h3>Continuous Learning</h3>
-      Staying updated with modern teaching strategies and professional growth.
-    </div>
+    <div class="card"><h3>Lesson Planning</h3>Engaging, structured lessons tailored to diverse learners.</div>
+    <div class="card"><h3>Curriculum Development</h3>Designing academic programs aligned with standards.</div>
+    <div class="card"><h3>Classroom Management</h3>Maintaining positive and disciplined learning spaces.</div>
+    <div class="card"><h3>Student Assessment</h3>Formative and summative evaluation strategies.</div>
+    <div class="card"><h3>Communication</h3>Strong collaboration with parents, students, and staff.</div>
+    <div class="card"><h3>Technology Integration</h3>Smart boards, digital tools, and e-learning platforms.</div>
+    <div class="card"><h3>Time Management</h3>Efficient handling of academic responsibilities.</div>
+    <div class="card"><h3>Continuous Learning</h3>Professional growth and updated teaching practices.</div>
 
   </div>
 </section>
@@ -248,36 +269,28 @@ footer{
 <!-- CONTACT -->
 <section id="contact" class="fade">
   <h2>Contact</h2>
-  <div style="text-align:center">
+  <div class="contact">
     📧 yourmail@email.com<br>
     📱 +91 XXXXX XXXXX
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   © 2026 Ruchi Goyal | Professional Portfolio
 </footer>
 
 <script>
-/* fade animation on scroll */
-const faders = document.querySelectorAll('.fade');
+const faders=document.querySelectorAll('.fade');
 
-const appearOptions = {
-  threshold:0.2
-};
-
-const appearOnScroll = new IntersectionObserver(function(entries,observer){
+const observer=new IntersectionObserver(entries=>{
   entries.forEach(entry=>{
-    if(!entry.isIntersecting) return;
-    entry.target.classList.add('show');
-    observer.unobserve(entry.target);
+    if(entry.isIntersecting){
+      entry.target.classList.add('show');
+    }
   });
-}, appearOptions);
+},{threshold:0.2});
 
-faders.forEach(fader=>{
-  appearOnScroll.observe(fader);
-});
+faders.forEach(f=>observer.observe(f));
 </script>
 
 </body>
