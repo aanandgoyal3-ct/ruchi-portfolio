@@ -10,12 +10,13 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
-/* ============ 1. RESET & BASICS ============ */
+/* ============ 1. PERFORMANCE & RESET ============ */
 :root {
   --primary: #2563eb;
   --dark: #0f172a;
   --bg: #f8fafc;
-  --white: #ffffff;
+  --card-bg: #ffffff;
+  --transition-speed: 0.3s;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
@@ -23,19 +24,18 @@
 body {
   background: var(--bg);
   color: var(--dark);
-  line-height: 1.6;
   overflow-x: hidden;
+  /* Font smoothing for better text rendering */
+  -webkit-font-smoothing: antialiased;
 }
 
-html { scroll-behavior: smooth; }
-
-/* ============ 2. NAVBAR ============ */
+/* ============ 2. NAVBAR (Fixed Spacing) ============ */
 nav {
   position: fixed;
   width: 100%;
   top: 0;
-  height: 75px;
-  background: rgba(255, 255, 255, 0.98);
+  height: 70px;
+  background: white;
   box-shadow: 0 2px 10px rgba(0,0,0,0.05);
   z-index: 1000;
   display: flex;
@@ -44,8 +44,8 @@ nav {
 
 .nav-container {
   width: 100%;
-  max-width: 1200px;
-  padding: 0 20px;
+  max-width: 1400px; /* Wider for your screen */
+  padding: 0 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -54,49 +54,61 @@ nav {
 .logo-section {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 12px; /* Perfect gap between badge and name */
   cursor: pointer;
 }
 
 .logo-badge {
-  width: 40px; height: 40px;
   background: var(--primary);
   color: white;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-weight: 700;
-  font-size: 16px;
-}
-
-.nav-right { display: flex; align-items: center; gap: 25px; }
-nav ul { list-style: none; display: flex; gap: 25px; }
-nav a { text-decoration: none; color: var(--dark); font-weight: 500; transition: 0.3s; }
-nav a:hover { color: var(--primary); }
-
-/* Search Bar */
-.search-wrapper {
-  position: relative;
-  background: #f1f5f9;
-  border-radius: 20px;
-  padding: 5px 15px;
   display: flex;
   align-items: center;
-  border: 1px solid #e2e8f0;
+  justify-content: center;
+  font-weight: 700;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+nav ul { list-style: none; display: flex; gap: 25px; }
+nav a { text-decoration: none; color: var(--dark); font-weight: 500; transition: color 0.2s; }
+nav a:hover { color: var(--primary); }
+
+/* SEARCH BAR (Optimized) */
+.search-wrapper {
+  position: relative;
 }
 .search-wrapper input {
-  border: none; background: transparent; outline: none; margin-left: 10px; font-size: 14px; width: 180px;
+  padding: 8px 15px 8px 35px;
+  border-radius: 20px;
+  border: 1px solid #e2e8f0;
+  background: #f1f5f9;
+  outline: none;
+  font-size: 14px;
+  width: 200px;
+  transition: width 0.3s;
 }
+.search-wrapper input:focus { width: 250px; border-color: var(--primary); background: white; }
+.search-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #94a3b8; font-size: 14px; }
 
 /* ============ 3. HERO SECTION ============ */
 .hero {
   height: 85vh;
-  margin-top: 75px;
+  margin-top: 70px;
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
   color: white;
+  /* Static background is faster than fixed attachment */
   background: linear-gradient(rgba(15,23,42,0.8), rgba(15,23,42,0.8)), 
               url("https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1900&q=80");
   background-size: cover;
@@ -108,7 +120,7 @@ nav a:hover { color: var(--primary); }
   margin-bottom: 20px; object-fit: cover;
 }
 .hero h1 { font-size: 48px; margin-bottom: 10px; }
-.hero p { font-size: 20px; opacity: 0.9; font-weight: 300; }
+.hero p { font-size: 20px; opacity: 0.9; }
 
 /* ============ 4. GENERAL LAYOUT ============ */
 .container {
@@ -117,25 +129,17 @@ nav a:hover { color: var(--primary); }
   padding: 80px 20px;
 }
 
-section {
-  scroll-margin-top: 100px;
-  margin-bottom: 100px;
-}
-
 h2 {
   text-align: center;
   font-size: 32px;
   margin-bottom: 50px;
-  color: var(--dark);
-  font-weight: 700;
   position: relative;
 }
-
 h2::after {
-  content: ''; display: block; width: 60px; height: 4px; background: var(--primary); margin: 15px auto 0;
+  content: ''; display: block; width: 60px; height: 4px; background: var(--primary); margin: 10px auto 0;
 }
 
-/* ============ 5. SKILLS ============ */
+/* ============ 5. SKILLS (Hover Effect) ============ */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -146,99 +150,113 @@ h2::after {
   background: white;
   padding: 30px;
   border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-  transition: 0.3s;
-  border-bottom: 3px solid transparent;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   cursor: default;
+  border-bottom: 3px solid transparent;
+  height: 100%; /* Uniform height */
 }
 
+/* HOVER INTERACTION */
 .card:hover {
   transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
   border-bottom-color: var(--primary);
-  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
 }
 
 .card-header { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
-.card i { font-size: 26px; color: var(--primary); }
+.card i { font-size: 24px; color: var(--primary); }
 .card h3 { font-size: 18px; font-weight: 600; }
 
+/* Detail visible on Hover */
 .card-desc {
-  font-size: 14px; color: #64748b; line-height: 1.6;
-  max-height: 0; overflow: hidden; opacity: 0; transition: all 0.4s ease;
+  font-size: 14px;
+  color: var(--text-grey);
+  line-height: 1.6;
+  opacity: 0.6;
+  max-height: 0; /* Hidden by default */
+  overflow: hidden;
+  transition: all 0.4s ease;
 }
 
+/* When hovering card, show description */
 .card:hover .card-desc {
-  max-height: 100px; opacity: 1; margin-top: 10px;
+  opacity: 1;
+  max-height: 100px; /* Enough space to show text */
 }
 
-/* ============ 6. EXPERIENCE ============ */
+/* ============ 6. EXPERIENCE (Always Visible) ============ */
 .exp-item {
-  display: flex;
   background: white;
   border-radius: 15px;
   margin-bottom: 40px;
   box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-  overflow: hidden;
-  border: 1px solid #f1f5f9;
-}
-
-.exp-content { padding: 40px; flex: 1.5; display: flex; flex-direction: column; justify-content: center; }
-.exp-role { color: var(--primary); font-size: 22px; font-weight: 700; margin-bottom: 5px; }
-.exp-place { font-size: 14px; color: #64748b; font-weight: 600; text-transform: uppercase; margin-bottom: 20px; }
-.exp-text { font-size: 15px; color: #334155; line-height: 1.7; }
-
-.exp-img { flex: 1; min-height: 250px; }
-.exp-img img { width: 100%; height: 100%; object-fit: cover; }
-
-/* ============ 7. CONTACT (Themed to Match Page) ============ */
-.contact-box {
-  background: white;        /* White Background like other cards */
-  color: var(--dark);       /* Dark text */
-  max-width: 700px;
-  margin: 0 auto;
-  padding: 50px;
-  border-radius: 20px;
-  text-align: center;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08); /* Matches other shadows */
-  border: 1px solid #f1f5f9; /* Matches other borders */
-}
-
-.contact-row {
   display: flex;
-  justify-content: center;
+  overflow: hidden;
+  /* Faster rendering */
+  transform: translateZ(0); 
+}
+
+.exp-content { padding: 40px; flex: 1; display: flex; flex-direction: column; justify-content: center; }
+.exp-header h3 { color: var(--primary); font-size: 22px; margin-bottom: 5px; }
+.exp-header span { font-size: 14px; color: #64748b; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+.exp-text { margin-top: 20px; color: #334155; line-height: 1.7; font-size: 15px; }
+
+/* Right side Image */
+.exp-img {
+  width: 300px;
+  object-fit: cover;
+}
+
+/* ============ 7. NEW CONTACT SECTION (Premium) ============ */
+.contact-section {
+  background: #1e293b; /* Dark slate */
+  color: white;
+  border-radius: 20px;
+  padding: 60px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.contact-section h2 { color: white; margin-bottom: 40px; }
+.contact-section h2::after { background: #fbbf24; /* Gold accent */ }
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.c-item {
+  display: flex;
+  flex-direction: column;
   align-items: center;
   gap: 15px;
-  margin-bottom: 20px;
-  font-size: 18px;
-  color: var(--dark); /* Dark text */
 }
 
-.contact-row i { color: var(--primary); font-size: 22px; } /* Blue Icons */
+.c-icon {
+  width: 50px; height: 50px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; color: #fbbf24;
+}
+
+.c-text { font-size: 16px; font-weight: 300; letter-spacing: 0.5px; }
+.c-label { font-size: 12px; opacity: 0.5; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
 
 /* ============ 8. FOOTER ============ */
-footer {
-  text-align: center;
-  padding: 60px 20px;
-  background: var(--dark);
-  color: #94a3b8;
-}
-
-.signature {
-  font-family: 'Great Vibes', cursive;
-  font-size: 60px;
-  color: white;
-  text-shadow: 0 0 15px rgba(255,255,255,0.6);
-  display: inline-block;
-  margin-bottom: 10px;
-  transform: rotate(-3deg);
-}
+footer { text-align: center; padding: 50px; color: #64748b; background: white; margin-top: 80px; }
+.sig { font-family: 'Great Vibes', cursive; font-size: 35px; color: var(--primary); margin-bottom: 10px; }
 
 /* ============ MOBILE ============ */
 @media(max-width: 900px){
   .exp-item { flex-direction: column; }
-  .nav-right ul { display: none; }
-  .container { padding: 50px 20px; }
-  section { margin-bottom: 60px; }
+  .exp-img { width: 100%; height: 250px; }
+  .nav-links ul { display: none; } /* Simplified mobile nav */
 }
 </style>
 </head>
@@ -248,13 +266,13 @@ footer {
   <div class="nav-container">
     <div class="logo-section" onclick="window.scrollTo(0,0)">
       <div class="logo-badge">RG</div>
-      <strong>Ruchi Goyal</strong>
+      <div style="font-weight:700; font-size:18px;">Ruchi Goyal</div>
     </div>
 
-    <div class="nav-right">
+    <div class="nav-links">
       <div class="search-wrapper">
-        <i class="fa-solid fa-magnifying-glass" style="color:#94a3b8"></i>
-        <input type="text" id="searchInput" placeholder="Search..." onkeyup="runSearch()">
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        <input type="text" id="searchInput" placeholder="Search portfolio..." onkeyup="liveSearch()">
       </div>
       
       <ul>
@@ -277,6 +295,7 @@ footer {
   <section id="skills">
     <h2>Core Competencies</h2>
     <div class="grid">
+      
       <div class="card searchable">
         <div class="card-header"><i class="fa-solid fa-book-open"></i><h3>Lesson Planning</h3></div>
         <div class="card-desc">Designing structured daily and weekly plans that cater to diverse learning styles and meet academic standards effectively.</div>
@@ -298,9 +317,10 @@ footer {
         <div class="card-desc">Proficient in using smart boards, educational software, and digital tools to enhance the learning experience.</div>
       </div>
       <div class="card searchable">
-        <div class="card-header"><i class="fa-solid fa-comments"></i><h3>Parent Relations</h3></div>
+        <div class="card-header"><i class="fa-solid fa-comments"></i><h3>Parent Communication</h3></div>
         <div class="card-desc">Building strong relationships with parents and faculty to ensure a holistic support system for students.</div>
       </div>
+
     </div>
   </section>
 
@@ -309,41 +329,57 @@ footer {
     
     <div class="exp-item searchable">
       <div class="exp-content">
-        <div class="exp-role">Teacher & Mentor</div>
-        <div class="exp-place">Subodh Public School</div>
+        <div class="exp-header">
+          <h3>Teacher & Mentor</h3>
+          <span>Subodh Public School</span>
+        </div>
         <p class="exp-text">Lead teacher for middle school science. Successfully implemented a new peer-learning program that improved class average scores by 15%. Organized the annual Science Fair and mentored students for state-level competitions.</p>
       </div>
-      <div class="exp-img">
-        <img src="https://images.unsplash.com/photo-1577896334614-201b31d50863?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Teaching">
-      </div>
+      <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="exp-img" alt="Teaching">
     </div>
 
     <div class="exp-item searchable">
       <div class="exp-content">
-        <div class="exp-role">Academic Coordinator</div>
-        <div class="exp-place">Education Board, Jaipur</div>
+        <div class="exp-header">
+          <h3>Academic Coordinator</h3>
+          <span>Education Board, Jaipur</span>
+        </div>
         <p class="exp-text">Coordinated inter-school competitions and managed the annual academic calendar. Worked closely with the principal on faculty development workshops and streamlined the examination process.</p>
       </div>
-      <div class="exp-img">
-        <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Meeting">
-      </div>
+      <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="exp-img" alt="Coordination">
     </div>
+
   </section>
 
   <section id="contact">
-    <h2>Get In Touch</h2>
-    <div class="contact-box">
-      <div class="contact-row">
-        <i class="fa-solid fa-phone"></i>
-        <span>9829821567</span>
-      </div>
-      <div class="contact-row">
-        <i class="fa-solid fa-envelope"></i>
-        <span>aanandgoyal3@gmail.com</span>
-      </div>
-      <div class="contact-row">
-        <i class="fa-solid fa-location-dot"></i>
-        <span>Jaipur, India</span>
+    <div class="contact-section">
+      <h2>Get in Touch</h2>
+      <p style="opacity:0.8;">Feel free to reach out for collaborations or opportunities.</p>
+      
+      <div class="contact-grid">
+        <div class="c-item">
+          <div class="c-icon"><i class="fa-solid fa-phone"></i></div>
+          <div>
+            <div class="c-label">Phone</div>
+            <div class="c-text">9829821567</div>
+          </div>
+        </div>
+        
+        <div class="c-item">
+          <div class="c-icon"><i class="fa-solid fa-envelope"></i></div>
+          <div>
+            <div class="c-label">Email</div>
+            <div class="c-text">aanandgoyal3@gmail.com</div>
+          </div>
+        </div>
+        
+        <div class="c-item">
+          <div class="c-icon"><i class="fa-solid fa-location-dot"></i></div>
+          <div>
+            <div class="c-label">Location</div>
+            <div class="c-text">Jaipur, India</div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -351,24 +387,26 @@ footer {
 </div>
 
 <footer>
-  <div class="signature">Ruchi Goyal</div>
+  <div class="sig">Ruchi Goyal</div>
   <p>© 2026 Ruchi Goyal | Professional Portfolio</p>
 </footer>
 
 <script>
-  function runSearch() {
-    var input = document.getElementById('searchInput').value.toLowerCase();
-    var items = document.querySelectorAll('.searchable');
+  function liveSearch() {
+    let input = document.getElementById('searchInput').value.toLowerCase();
+    let cards = document.querySelectorAll('.searchable');
 
-    items.forEach(function(item) {
-      if (item.innerText.toLowerCase().includes(input)) {
-        if(item.classList.contains('exp-item')) {
-           item.style.display = 'flex';
-        } else {
-           item.style.display = 'block';
-        }
+    cards.forEach(card => {
+      // Get all text inside the card/experience item
+      let text = card.innerText.toLowerCase();
+      
+      if(text.includes(input)) {
+        // If it matches, make sure it's visible
+        card.style.display = "flex"; // "flex" preserves layout for exp-item
+        if(card.classList.contains('card')) card.style.display = "block"; // "block" for grid cards
       } else {
-        item.style.display = 'none';
+        // If it doesn't match, hide it completely
+        card.style.display = "none";
       }
     });
   }
